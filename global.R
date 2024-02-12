@@ -18,10 +18,9 @@ day <- rast("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_intensity_day.nc")
 time(day[[3]]) <- as.Date("2017-01-15") # ajustare timp pentru vizualizare
 night <- rast("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_intensity_night.nc")
 
-seasons <- paste(format(time(day), "%Y"), mkseas(time(day), "DJF")) |> sort()
+seasons <-  mkseas(time(day), "DJF") |> unique() |> as.character()
 
 seasons <- setNames(seasons, seasons)
-
-domain_suhi <- c(-15, 15)
+domain_suhi <- c(-10, 10)
 pal_rev_suhi <- colorNumeric("RdYlBu", domain = domain_suhi, reverse = F, na.color = "transparent")
 pal_suhi <- colorNumeric("RdYlBu", domain = domain_suhi, reverse = T, na.color = "transparent")
