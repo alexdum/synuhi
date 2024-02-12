@@ -7,7 +7,7 @@ leaflet_fun <- function() {
     ) 
   ) %>%
     leaflet.extras::addBootstrapDependency() %>%
-    setView(25, 46, zoom = 7) %>%
+    setView(25, 46, zoom = 4) %>%
     setMaxBounds(20, 43.5, 31, 48.2) |>
     #addMapPane(name = "statii", zIndex = 420) %>%
     #addMapPane(name = "judete", zIndex = 430) %>%
