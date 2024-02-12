@@ -1,5 +1,3 @@
-
-
 ui <- 
   page_fillable(
     layout_sidebar(
