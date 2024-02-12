@@ -12,7 +12,7 @@ function(input, output, session) {
       r <- night
     }
     
-    ri <- r[[which(paste(format(time(r), "%Y"), mkseas(time(r), "DJF")) %in% input$season)]]
+    ri <- r[[which(paste(format(time(r), "%Y"), mkseas(time(r), "DJF")) %in% paste(input$year, input$season))]]
     
     ri[ri > 10] <- 10
     ri[ri < -10] <- -10
