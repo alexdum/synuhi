@@ -14,8 +14,8 @@ function(input, output, session) {
     
     ri <- r[[which(paste(format(time(r), "%Y"), mkseas(time(r), "DJF")) %in% input$season)]]
     
-    ri[ri > 5] <- 5
-    ri[ri < -5] <- -5
+    ri[ri > 10] <- 10
+    ri[ri < -10] <- -10
     
     list(city_sub = city_sub, ri = ri)
   })
@@ -34,12 +34,20 @@ function(input, output, session) {
     leafletProxy("map") |>
       addPolygons(
         data = cities,
-        color = "yellow", weight = 1, smoothFactor = 0.5,
+        color = "#252525", weight = 1, smoothFactor = 0.5,
         opacity = 0.7, fillOpacity = 0.0,
         options = pathOptions(pane = "cities"),
         group = "Cities") |>
       addRasterImage(ri, colors = pal_suhi, opacity = .8) |> 
-      fitBounds(bbox[1], bbox[2], bbox[3], bbox[4])
+      fitBounds(bbox[1], bbox[2], bbox[3], bbox[4]) |>
+      clearControls() %>%
+      addLegend(
+        title =  "SUHI °C",
+        position = "bottomright",
+        pal = pal_rev_suhi, values = domain_suhi,
+        opacity = 1,
+        labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))
+      )
   })
   
 }
