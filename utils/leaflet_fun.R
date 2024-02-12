@@ -9,7 +9,7 @@ leaflet_fun <- function() {
     leaflet.extras::addBootstrapDependency() %>%
     setView(25, 46, zoom = 4) %>%
     setMaxBounds(20, 43.5, 31, 48.2) |>
-    #addMapPane(name = "statii", zIndex = 420) %>%
+    #addMapPane(name = "SUHI", zIndex = 420) %>%
     #addMapPane(name = "judete", zIndex = 430) %>%
     addMapPane(name = "cities", zIndex = 440) %>%
     addMapPane(name = "maplabels", zIndex = 450) %>%
@@ -35,8 +35,16 @@ leaflet_fun <- function() {
     #   group = "Cities") |>
     addLayersControl(
       baseGroups = c("EsriWorldImagery","CartoDB","EsriWorldGray"),
-      overlayGroups = c("Labels","Cities","Județe")) |> 
-    # hideGroup(c("Stații", "Labels")) |>
+      overlayGroups = c("Labels","Cities")) |> 
+     #hideGroup("SUHI") |>
+    # pentru poztionare raster mereu in top
+    htmlwidgets::onRender(" 
+    function(el, x) {
+      this.on('baselayerchange', function(e) {
+        e.layer.bringToBack();
+      })
+    }
+  ") |>
  
     addProviderTiles(
       "CartoDB.PositronOnlyLabels",
@@ -45,7 +53,7 @@ leaflet_fun <- function() {
     ) %>%
     addScaleBar(
       position = c("bottomleft"),
-      options = scaleBarOptions(metric = TRUE))
+      options = scaleBarOptions(metric = TRUE)) 
   
   
   return(map)
