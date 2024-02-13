@@ -58,25 +58,37 @@ function(input, output, session) {
       ) 
   })
   
+  
+ chart_vars <- reactiveValues(df = NULL, coordinates = NULL)
+  
   observe({ 
-    
-    # centroidul orasului pentru extragere cand se alege orasul
-    city_sub <- data_sel()$city_sub 
-    cent <- st_centroid(city_sub) |> st_coordinates()
-    print(dim(cent))
-    
+  
     rs <- data_sel()$rs
     ids <- input$map_click
     
     if (is.null(ids)) {
+      # centroidul orasului pentru extragere cand se alege orasul
+      city_sub <- data_sel()$city_sub 
+      cent <- st_centroid(city_sub) |> st_coordinates()
+      print(dim(cent))
       ids <- data.frame(lng = cent[1,1], lat = cent[1,2])
+    } else {
+      ids <- data.frame(lng = ids$lng, lat = ids$lat)
     }
+      
+  
+    rs_ex <- terra::extract(rs, cbind(ids$lng, ids$lat))
+    df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]))
+    print(ids)
     
-    print(str(ids))
-   
-    rs_ex <- extract(rs, cbind(ids$lng, ids$lat))
-    print(rs_ex)
+    chart_vars$df <- df
+    chart_vars$coordinates <- ids
+  })
+  
+  output$chart <- renderHighchart({
     
+    pl <-  hchart(object = chart_vars$df, type = "column", hcaes(x = ani, y = val), color = 'red')
+    pl
     
   })
   
