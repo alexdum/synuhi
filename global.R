@@ -5,6 +5,7 @@ library(bslib)
 library(sf)
 library(dplyr)
 library(seas)
+library(highcharter)
 
 source("utils/leaflet_fun.R", local = T)
 
