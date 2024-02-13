@@ -14,10 +14,16 @@ function(input, output, session) {
     
     ri <- r[[which(paste(format(time(r), "%Y"), mkseas(time(r), "DJF")) %in% paste(input$year, input$season))]]
     
+    # pentru extragere date sezone
+    rs <- r[[which(mkseas(time(r), "DJF") %in% input$season)]]
+    
+    print(time(rs))
+    
+    
     ri[ri > 10] <- 10
     ri[ri < -10] <- -10
     
-    list(city_sub = city_sub, ri = ri)
+    list(city_sub = city_sub, ri = ri, rs = rs)
   })
   
   # functie leaflet de start
@@ -50,6 +56,28 @@ function(input, output, session) {
         opacity = 1,
         labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))
       ) 
+  })
+  
+  observe({ 
+    
+    # centroidul orasului pentru extragere cand se alege orasul
+    city_sub <- data_sel()$city_sub 
+    cent <- st_centroid(city_sub) |> st_coordinates()
+    print(dim(cent))
+    
+    rs <- data_sel()$rs
+    ids <- input$map_click
+    
+    if (is.null(ids)) {
+      ids <- data.frame(lng = cent[1,1], lat = cent[1,2])
+    }
+    
+    print(str(ids))
+   
+    rs_ex <- extract(rs, cbind(ids$lng, ids$lat))
+    print(rs_ex)
+    
+    
   })
   
 }
