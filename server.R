@@ -84,7 +84,13 @@ function(input, output, session) {
     df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]))
     
     hchart(object = df, type = "column", hcaes(x = ani, y = val), color = 'red')  |>
-      hc_title(text = toString(chart_vars$coordinates))
+      hc_title(text = toString(chart_vars$coordinates)) |>
+      hc_yAxis(
+        title = list(text = "SUHI [°C]")
+      ) |>
+      hc_xAxis(
+        title = list(text = "")
+      )
     
   })
   
