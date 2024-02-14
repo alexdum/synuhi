@@ -17,8 +17,6 @@ function(input, output, session) {
     # pentru extragere date sezone
     rs <- r[[which(mkseas(time(r), "DJF") %in% input$season)]]
     
-    print(time(rs))
-    
     
     ri[ri > 10] <- 10
     ri[ri < -10] <- -10
@@ -59,36 +57,34 @@ function(input, output, session) {
   })
   
   
- chart_vars <- reactiveValues(df = NULL, coordinates = NULL)
+  # variabile grafic
+  chart_vars <- reactiveValues(df = NULL, coordinates = NULL)
   
-  observe({ 
+  # pentru actualizare grafice cu schimbare oras
+  observeEvent(input$city,{ 
+    city_sub <- data_sel()$city_sub 
+    cent <- st_centroid(city_sub) |> st_coordinates()
+    co <- data.frame(lng = cent[1,1], lat = cent[1,2])
+    chart_vars$coordinates <- co
+    print( chart_vars$coordinates)
+  })
   
-    rs <- data_sel()$rs
+  # pentru actualizare grafice cu click
+  observeEvent(input$map_click, { 
     ids <- input$map_click
-    
-    if (is.null(ids)) {
-      # centroidul orasului pentru extragere cand se alege orasul
-      city_sub <- data_sel()$city_sub 
-      cent <- st_centroid(city_sub) |> st_coordinates()
-      print(dim(cent))
-      ids <- data.frame(lng = cent[1,1], lat = cent[1,2])
-    } else {
-      ids <- data.frame(lng = ids$lng, lat = ids$lat)
-    }
-      
-  
-    rs_ex <- terra::extract(rs, cbind(ids$lng, ids$lat))
-    df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]))
-    print(ids)
-    
-    chart_vars$df <- df
-    chart_vars$coordinates <- ids
+    co <- data.frame(lng = ids$lng, lat = ids$lat)
+    chart_vars$coordinates <- co
+    print( chart_vars$coordinates)
   })
   
   output$chart <- renderHighchart({
     
-    pl <-  hchart(object = chart_vars$df, type = "column", hcaes(x = ani, y = val), color = 'red')
-    pl
+    rs <- data_sel()$rs
+    rs_ex <- terra::extract(rs, cbind(chart_vars$coordinates$lng, chart_vars$coordinates$lat))
+    df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]))
+    
+    hchart(object = df, type = "column", hcaes(x = ani, y = val), color = 'red')  |>
+      hc_title(text = toString(chart_vars$coordinates))
     
   })
   
