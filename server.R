@@ -30,6 +30,7 @@ function(input, output, session) {
     # pentru zoom retea observatii vizualizata
     bbox <- st_bbox(data) |> as.vector()
     
+    
     leafletProxy("map") |>
       addPolygons(
         data = cities,
@@ -38,17 +39,16 @@ function(input, output, session) {
         options = pathOptions(pane = "cities"),
         group = "Cities") |>
       addRasterImage(
-        ri, colors = pal_suhi, opacity = .8,
+        ri, colors = pal_suhi, opacity = 1,
         group = "SUHI") |> 
-      fitBounds(bbox[1], bbox[2], bbox[3], bbox[4]) |>
-      clearControls() %>%
+      clearControls() |>
       addLegend(
         title =  "SUHI [°C]",
         position = "bottomright",
         pal = pal_rev_suhi, values = domain_suhi,
         opacity = 1,
-        labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))
-      ) 
+        labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))) |>
+      fitBounds(bbox[1], bbox[2], bbox[3], bbox[4])
   })
   
   

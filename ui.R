@@ -8,6 +8,11 @@ ui <-
         selectInput(
           "timeday", "Time of day:", 
           c("Day" = "day", "Night" = "night"))
+        # sliderInput(
+        #   "transp", "Transparency",
+        #   min = 0, max = 1, ticks = F,
+        #   value = 0.8, step = 0.1
+        # )
       ),
       
       # Show results
