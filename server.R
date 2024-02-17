@@ -4,7 +4,6 @@ function(input, output, session) {
   data_sel <- reactive({
     
     city_sub <- cities |> filter(cod %in% input$city)
-    
     # subsetare raster
     if (input$timeday %in% "day" ) {
       r <- day
@@ -12,16 +11,12 @@ function(input, output, session) {
       r <- night
     }
     
+    # subsetare raster pentru harta
     ri <- r[[which(paste(format(time(r), "%Y"), mkseas(time(r), "DJF")) %in% paste(input$year, input$season))]]
-    
-    # pentru extragere date sezone
-    rs <- r[[which(mkseas(time(r), "DJF") %in% input$season)]]
-    
-    
     ri[ri > 10] <- 10
     ri[ri < -10] <- -10
     
-    list(city_sub = city_sub, ri = ri, rs = rs)
+    list(city_sub = city_sub, ri = ri)
   })
   
   # functie leaflet de start
@@ -66,7 +61,6 @@ function(input, output, session) {
     cent <- st_centroid(city_sub) |> st_coordinates()
     co <- data.frame(lng = cent[1,1], lat = cent[1,2])
     chart_vars$coordinates <- co
-    print( chart_vars$coordinates)
   })
   
   # pentru actualizare grafice cu click
@@ -74,12 +68,20 @@ function(input, output, session) {
     ids <- input$map_click
     co <- data.frame(lng = ids$lng, lat = ids$lat)
     chart_vars$coordinates <- co
-    print( chart_vars$coordinates)
   })
   
   output$chart <- renderHighchart({
     
-    rs <- data_sel()$rs
+    # subsetare raster pentru grafic
+    if (input$timeday %in% "day" ) {
+      r <- day
+    } else {
+      r <- night
+    }
+    
+    # pentru extragere date sezone
+    rs <- r[[which(mkseas(time(r), "DJF") %in% input$season)]]
+    
     rs_ex <- terra::extract(rs, cbind(chart_vars$coordinates$lng, chart_vars$coordinates$lat))
     df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]))
     
