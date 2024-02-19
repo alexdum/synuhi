@@ -83,11 +83,16 @@ function(input, output, session) {
     rs <- r[[which(mkseas(time(r), "DJF") %in% input$season)]]
     
     rs_ex <- terra::extract(rs, cbind(chart_vars$coordinates$lng, chart_vars$coordinates$lat))
-    df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]))
+    df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]) |> round(1))
+    df$color <- ifelse(df$val > 0, "#ca0020", "#0571b0")
     
-    hchart(object = df, type = "column", hcaes(x = ani, y = val), color = 'red')  |>
+    highchart() |>
+      hc_add_series(data = df, "column",
+                    hcaes(x = ani, y = val, color = color),
+                    showInLegend = F) |> 
       hc_title(text = toString(chart_vars$coordinates)) |>
       hc_yAxis(
+        max = 10, min = -10,
         title = list(text = "SUHI [°C]")
       ) |>
       hc_xAxis(
