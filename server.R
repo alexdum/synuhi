@@ -101,4 +101,8 @@ function(input, output, session) {
     
   })
   
+  output$title_map <- renderText({
+    paste("SUHI intensity", names(names_cities[names_cities == input$city]))
+  })
+  
 }
