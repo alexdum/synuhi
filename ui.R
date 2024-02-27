@@ -16,18 +16,21 @@ ui <-
       ),
       
       # Show results
+      card_header(
+        textOutput("title_map")
+      ),
       layout_columns(
-          fill = F,
-          card(
-            card_header(textOutput("title_map")),
-            full_screen = T,
-            leafletOutput("map", height = "450px")
-          ),
-          card(
-            full_screen = T,
-            highchartOutput("chart", height = "450px")# %>% withSpinner(size = 0.5)
-          )
+        fill = F,
+        card(
+          full_screen = T,
+          leafletOutput("map", height = "450px")
+        ),
+        card(
+          full_screen = T,
+          highchartOutput("chart", height = "450px")# %>% withSpinner(size = 0.5)
         )
+      )
+      
       # navset_card_tab(
       #   full_screen = T,
       #   title = "TBA",
