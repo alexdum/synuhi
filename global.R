@@ -10,7 +10,7 @@ library(highcharter)
 source("utils/leaflet_fun.R", local = T)
 
 
-cities <- st_read("www/data/shp/cities_merged.geojson", quiet = T) |> arrange(name)
+cities <- st_read("www/data/shp/cities_merged.geojson", quiet = T) |> arrange(name) |> filter(name != "Constanta")
 
 names_cities <- setNames(cities$cod, cities$name)
 
