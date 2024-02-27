@@ -71,7 +71,7 @@ function(input, output, session) {
   })
   
   output$chart <- renderHighchart({
-    
+
     # subsetare raster pentru grafic
     if (input$timeday %in% "day" ) {
       r <- day
@@ -83,6 +83,10 @@ function(input, output, session) {
     rs <- r[[which(mkseas(time(r), "DJF") %in% input$season)]]
     
     rs_ex <- terra::extract(rs, cbind(chart_vars$coordinates$lng, chart_vars$coordinates$lat))
+    
+    # ploteazaca cand ai valoare cand nu afiseaza mesaj
+    if (!all(is.na(rs_ex))) {
+    
     df <- data.frame(ani = as.numeric(format(time(rs), "%Y")), val = unlist(rs_ex[1,]) |> round(1))
     df$color <- ifelse(df$val > 0, "#ca0020", "#0571b0")
     
@@ -100,6 +104,12 @@ function(input, output, session) {
       hc_xAxis(
         title = list(text = "")
       )
+    } else {
+      highchart() |> 
+        hc_title(
+          text = "Click on the area with available pixel values",
+          style = list(fontSize = "14px", color = "grey"))
+    }
     
   })
   
