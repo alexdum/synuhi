@@ -90,7 +90,9 @@ function(input, output, session) {
       hc_add_series(data = df, "column",
                     hcaes(x = ani, y = val, color = color),
                     showInLegend = F) |> 
-      hc_title(text = toString(chart_vars$coordinates)) |>
+      hc_title(
+        text = paste("SUHIi extracted values at lon: ",chart_vars$coordinates$lng, "lat: ", chart_vars$coordinates$lat),
+        style = list(fontSize = "14px", color = "grey")) |>
       hc_yAxis(
         max = 10, min = -10,
         title = list(text = "SUHI [°C]")
