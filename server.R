@@ -38,15 +38,16 @@ function(input, output, session) {
         opacity = 0.7, fillOpacity = 0.0,
         options = pathOptions(pane = "cities"),
         group = "Cities") |>
+      clearImages() |>
       addRasterImage(
-        ri, colors = pal_suhi, opacity = 1,
+        ri, colors = pal_suhi, opacity = input$transp,
         group = "SUHI") |> 
       clearControls() |>
       addLegend(
         title =  "SUHI [°C]",
         position = "bottomright",
         pal = pal_rev_suhi, values = domain_suhi,
-        opacity = 1,
+        opacity = input$transp,
         labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))) |>
       fitBounds(bbox[1], bbox[2], bbox[3], bbox[4])
   })
