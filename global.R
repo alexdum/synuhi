@@ -16,6 +16,6 @@ cities <- st_read("www/data/shp/cities_merged.geojson", quiet = T) |> arrange(na
 names_cities <- setNames(cities$cod, cities$name)
 
 
-seasons <-  mkseas(time(day), "DJF") |> unique() |> as.character()
+seasons <-  c("JJA", "SON", "DJF", "MAM")
 seasons <- setNames(seasons, seasons)
 
