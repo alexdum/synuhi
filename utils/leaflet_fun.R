@@ -36,7 +36,7 @@ leaflet_fun <- function() {
     #   group = "Cities") |>
     addLayersControl(
       baseGroups = c("EsriWorldImagery","CartoDB","EsriWorldGray"),
-      overlayGroups = c("Labels","Cities", "Cities buffer", "SUHI")) |> 
+      overlayGroups = c("Labels","Cities", "Cities buffer")) |> 
      #hideGroup("SUHI") |>
     # pentru poztionare raster mereu in top
     htmlwidgets::onRender(" 
