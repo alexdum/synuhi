@@ -93,8 +93,7 @@ function(input, output, session) {
   
   output$chart <- renderHighchart({
     
-    # pentru limite grafic
-    domain_r <- data_sel()$domain_r
+    
     
     # citeste fisier raster pentru grafic
     r <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_",toupper(input$param),"_",input$timeday,".nc"))
@@ -106,6 +105,15 @@ function(input, output, session) {
     
     rs_ex <- terra::extract(rs, cbind(chart_vars$coordinates$lng, chart_vars$coordinates$lat))
     
+    # pentru limite grafic
+    if (input$param %in% "suhi") {
+      lim_min <- -10
+      lim_max <- 10
+    } else {
+      lim_min <- floor(min(rs_ex |> unlist()))
+      lim_max <- ceiling(max(rs_ex |> unlist()))
+    }
+
     # ploteazaca cand ai valoare cand nu afiseaza mesaj
     if (!all(is.na(rs_ex))) {
       
@@ -120,7 +128,7 @@ function(input, output, session) {
           text = paste(toupper(input$param),"values extracted at lon: ",chart_vars$coordinates$lng, "lat: ", chart_vars$coordinates$lat),
           style = list(fontSize = "14px", color = "grey")) |>
         hc_yAxis(
-          max = domain_r[2], min = domain_r[1],
+          max = lim_max, min = lim_min,
           title = list(text = paste(toupper(input$param), "[°C]"))
         ) |>
         hc_xAxis(
