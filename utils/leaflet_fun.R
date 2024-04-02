@@ -12,6 +12,7 @@ leaflet_fun <- function() {
     #addMapPane(name = "SUHI", zIndex = 420) %>%
     #addMapPane(name = "judete", zIndex = 430) %>%
     addMapPane(name = "cities", zIndex = 440) %>%
+    addMapPane(name = "cities_buf", zIndex = 445) %>%
     addMapPane(name = "maplabels", zIndex = 450) %>%
     addProviderTiles( "CartoDB.Positron", group = "CartoDB")  %>% 
     addProviderTiles( "Esri.WorldGrayCanvas", group = "EsriWorldGray") |> 
@@ -35,7 +36,7 @@ leaflet_fun <- function() {
     #   group = "Cities") |>
     addLayersControl(
       baseGroups = c("EsriWorldImagery","CartoDB","EsriWorldGray"),
-      overlayGroups = c("Labels","Cities", "SUHI")) |> 
+      overlayGroups = c("Labels","Cities", "Cities buffer", "SUHI")) |> 
      #hideGroup("SUHI") |>
     # pentru poztionare raster mereu in top
     htmlwidgets::onRender(" 
@@ -45,6 +46,7 @@ leaflet_fun <- function() {
       })
     }
   ") |>
+    hideGroup("Cities buffer") |> # nu vizualiza bufere
  
     addProviderTiles(
       "CartoDB.PositronOnlyLabels",

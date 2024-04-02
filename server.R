@@ -5,6 +5,7 @@ function(input, output, session) {
     
     # subseteaza limita city
     city_sub <- cities |> filter(cod %in% input$city)
+    city_sub_buf <- cities_buf |> filter(cod %in% input$city)
     
     # citeste fisier raster
     r <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_",toupper(input$param),"_",input$timeday,".nc"))
@@ -18,9 +19,7 @@ function(input, output, session) {
       pal_rev <- colorNumeric("RdYlBu", domain = domain_r, reverse = F, na.color = "transparent")
       pal <- colorNumeric("RdYlBu", domain = domain_r, reverse = T, na.color = "transparent")
     } else {
-      
       ri_crop <- crop(ri, ext(city_sub))
-      
       domain_r <- minmax(ri_crop)
       pals <-  map_cols_fun(indic = "lst", domain_r )
       pal_rev <- pals$pal_rev
@@ -33,7 +32,7 @@ function(input, output, session) {
     
     
     
-    list(city_sub = city_sub, ri = ri,  domain_r =  domain_r, pal = pal, pal_rev = pal_rev)
+    list(city_sub = city_sub, city_sub_buf = city_sub_buf, ri = ri,  domain_r =  domain_r, pal = pal, pal_rev = pal_rev)
   })
   
   # functie leaflet de start
@@ -42,7 +41,7 @@ function(input, output, session) {
   })
   
   observe({
-    data <- data_sel()$city_sub
+    data <- data_sel()$city_sub_buf
     ri <- data_sel()$ri
     pal <- data_sel()$pal
     pal_rev <- data_sel()$pal_rev
@@ -58,6 +57,12 @@ function(input, output, session) {
         opacity = 0.7, fillOpacity = 0.0,
         options = pathOptions(pane = "cities"),
         group = "Cities") |>
+      addPolygons(
+        data = cities_buf,
+        color = "#252525", weight = 1, smoothFactor = 0.5,
+        opacity = 0.7, fillOpacity = 0.0,
+        options = pathOptions(pane = "cities_buf"),
+        group = "Cities buffer") |>
       clearImages() |>
       addRasterImage(
         ri, colors = pal, opacity = input$transp,
@@ -78,8 +83,8 @@ function(input, output, session) {
   
   # pentru actualizare grafice cu schimbare oras
   observeEvent(input$city,{ 
-    city_sub <- data_sel()$city_sub 
-    cent <- st_centroid(city_sub) |> st_coordinates()
+    city_sub_buf <- data_sel()$city_sub_buf
+    cent <- st_centroid(city_sub_buf) |> st_coordinates()
     co <- data.frame(lng = cent[1,1], lat = cent[1,2])
     chart_vars$coordinates <- co
   })
@@ -113,7 +118,7 @@ function(input, output, session) {
       lim_min <- floor(min(rs_ex |> unlist()))
       lim_max <- ceiling(max(rs_ex |> unlist()))
     }
-
+    
     # ploteazaca cand ai valoare cand nu afiseaza mesaj
     if (!all(is.na(rs_ex))) {
       
