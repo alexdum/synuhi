@@ -13,6 +13,7 @@ source("utils/map_cols_fun.R", local = T)
 
 
 cities <- st_read("www/data/shp/cities_merged.geojson", quiet = T) |> arrange(name) |> filter(name != "Constanta")
+cities_buf <- st_read("www/data/shp/cities_buf_merged.geojson", quiet = T) |> arrange(name) |> filter(name != "Constanta")
 names_cities <- setNames(cities$cod, cities$name)
 
 
