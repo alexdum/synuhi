@@ -53,13 +53,13 @@ function(input, output, session) {
     leafletProxy("map") |>
       addPolygons(
         data = cities,
-        color = "#252525", weight = 1, smoothFactor = 0.5,
+        color = "#252525", weight = 2, smoothFactor = 0.5,
         opacity = 0.7, fillOpacity = 0.0,
         options = pathOptions(pane = "cities"),
         group = "Cities") |>
       addPolygons(
         data = cities_buf,
-        color = "#252525", weight = 1, smoothFactor = 0.5,
+        color = "#252525", weight = 2, smoothFactor = 0.5,
         opacity = 0.7, fillOpacity = 0.0,
         options = pathOptions(pane = "cities_buf"),
         group = "Cities buffer") |>
