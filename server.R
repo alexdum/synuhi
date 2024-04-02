@@ -21,8 +21,8 @@ function(input, output, session) {
       
       ri_crop <- crop(ri, ext(city_sub))
       
-      domain_r <-minmax(ri_crop)
-     pals <-  map_cols_fun(indic = "lst", domain_r )
+      domain_r <- minmax(ri_crop)
+      pals <-  map_cols_fun(indic = "lst", domain_r )
       pal_rev <- pals$pal_rev
       pal <-  pals$pal
     }
@@ -31,7 +31,7 @@ function(input, output, session) {
     ri[ri >  domain_r[2]] <-  domain_r[2]
     ri[ri <  domain_r[1]] <-  domain_r[1]
     
-   
+    
     
     list(city_sub = city_sub, ri = ri,  domain_r =  domain_r, pal = pal, pal_rev = pal_rev)
   })
