@@ -4,4 +4,6 @@ function(input, output, session) {
   source("sections/server_variability.R", local = T)
   source("sections/server_adaptation.R", local = T)
   
+  # pentru incarcare si map_adpat nac_se`
+  outputOptions(output, "map_adapt", suspendWhenHidden = FALSE)
 }
