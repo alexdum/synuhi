@@ -1,5 +1,6 @@
+source("sections/ui_variability.R", local = T)
+source("sections/ui_adaptation.R", local = T)
 
-source("sections/ui_variability.R")
 ui <- 
   page_navbar(
     theme = bs_theme(
@@ -19,10 +20,7 @@ ui <-
       #   
       # )
     
-    nav_panel(
-      "Adaptation",
-      p("TBA")
-    ),
+    nav_panel("Adaptation", ui_adaptation),
     nav_panel(
       class = "bslib-page-dashboard",
       "Guide",
