@@ -2,5 +2,6 @@
 function(input, output, session) {
   
   source("sections/server_variability.R", local = T)
+  source("sections/server_adaptation.R", local = T)
   
 }
