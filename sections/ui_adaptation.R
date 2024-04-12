@@ -8,6 +8,14 @@ ui_adaptation <-
         selectInput(
           "timeday_var", "Time of day:", 
           c("Day" = "day", "Night" = "night")),
+        radioButtons(
+          "scenario",
+          "Adaptation scenario",
+          choiceNames  = list("Original", "LCZ 05", "LCZ 06", "LCZ 12"),
+          selected = "LCZ 05",
+          inline = F,
+          choiceValues = list("oring", "lcz05", "lcz06", "lcz06")
+        ),
         sliderInput(
           "transp_var", "Transparency",
           min = 0, max = 1, ticks = F,
