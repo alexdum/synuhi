@@ -11,7 +11,7 @@ data_seladapt <- reactive({
     
   } else {
     r <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_", input$scenario,".nc"))
-  
+    
     
   }
   
@@ -44,7 +44,7 @@ output$map_adapt <- renderLeaflet({
 
 observe({
   
-
+  
   
   rr <- data_seladapt()$ri
   data <- data_seladapt()$city_sub_buf
@@ -84,12 +84,31 @@ observe({
 })
 
 # adaptiabile grafic
-chart_adapts2 <- reactiveValues(df = NULL, coordinates = NULL)
+chart_adapt <- reactiveValues(df = NULL, coordinates = NULL)
 
 # pentru actualizare grafice cu schimbare oras
 observeEvent(input$city_adapt,{ 
   city_sub_buf <- data_seladapt()$city_sub_buf
   cent <- st_centroid(city_sub_buf) |> st_coordinates()
   co <- data.frame(lng = cent[1,1], lat = cent[1,2])
-  chart_adapts2$coordinates <- co
+  chart_adapt$coordinates <- co
+  
 })
+
+# pentru actualizare grafice cu click
+observeEvent(input$map_adapt_click, { 
+  ids <- input$map_adapt_click
+  co <- data.frame(lng = ids$lng, lat = ids$lat)
+  chart_adapt$coordinates <- co
+  print(chart_adapt$coordinates)
+})
+
+
+observe({
+  
+  r05 <- rast("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_day_05.nc")
+  r05_ex <- terra::extract(r05, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
+  print(summary(r05_ex))
+})
+
+
