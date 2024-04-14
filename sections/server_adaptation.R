@@ -8,11 +8,8 @@ data_seladapt <- reactive({
   if (input$scenario %in% "orig") {
     r <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,".nc"))
     time(r[[3]]) <- as.Date("2017-01-15") # ajustare timp pentru vizualizare
-    
   } else {
     r <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_", input$scenario,".nc"))
-    
-    
   }
   
   
@@ -106,9 +103,28 @@ observeEvent(input$map_adapt_click, {
 
 observe({
   
-  r05 <- rast("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_day_05.nc")
+  rorig <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,".nc"))
+  time(rorig[[3]]) <- as.Date("2017-01-15") 
+  # subsetare raster pentru harta
+  rorig <- rorig[[which(paste(format(time(rorig), "%Y"), mkseas(time(rorig), "DJF")) %in% paste(input$year_adapt, input$season_adapt))]]
+  rorig_ex <- terra::extract(rorig, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
+  r05 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_05.nc"))
   r05_ex <- terra::extract(r05, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
-  print(summary(r05_ex))
+  r06 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_06.nc"))
+  r06_ex <- terra::extract(r06, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
+  r12 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_12.nc"))
+  r12_ex <- terra::extract(r12, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
+  
+  chart_adapt$df <-
+    data.frame(
+      Original = as.vector(unlist(rorig_ex)),
+      LCZ_05  =  as.vector(unlist(r05_ex)),
+      LCZ_06  =  as.vector(unlist(r06_ex)),
+      LCZ_12  =  as.vector(unlist(r12_ex))
+    )
+  
+  print(summary(chart_adapt$df))
+
 })
 
 
