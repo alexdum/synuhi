@@ -126,6 +126,7 @@ observeEvent(input$map_adapt_click, {
       year = format(time(rorig), "%Y") |> as.numeric()
     )
   
+  print(chart_adapt$df)
   
   
 })
@@ -144,6 +145,22 @@ output$chart_adapt <- renderHighchart({
   hc_title(
     text = paste("SUHI values extracted for each adaptation scenario at lon: ",chart_adapt$coordinates$lng, "lat: ", chart_adapt$coordinates$lat),
     style = list(fontSize = "14px", color = "grey")) 
+  
+})
+
+
+output$table_adapt <-  DT::renderDT({
+  
+  chart_adapt$df |>
+    DT::datatable(
+      extensions = 'Buttons', rownames = F,
+      options = list(
+        dom = 'Bfrtip',digits = 1,
+        pageLength = 6, autoWidth = TRUE,
+        buttons = c('pageLength','copy', 'csv', 'excel')
+        
+      )
+    )
   
 })
 
