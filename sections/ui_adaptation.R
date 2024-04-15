@@ -13,7 +13,7 @@ ui_adaptation <-
           span(
             "Adaptation scenario",
             tooltip(
-              bsicons::bs_icon("question-circle"),
+              bsicons::bs_icon("info-circle"),
               "SUHI adaptation scenario based on modified Local Climate Zones classes (LCZ). See Info subsection.",
               placement = "right"
             )
@@ -53,7 +53,7 @@ ui_adaptation <-
         ),
         nav_panel(
           "Info", 
-          icon =  bsicons::bs_icon("question-circle"),
+          icon =  bsicons::bs_icon("info-circle"),
           p("TBA")
         )
       )
