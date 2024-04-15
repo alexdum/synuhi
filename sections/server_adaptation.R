@@ -126,9 +126,6 @@ observeEvent(input$map_adapt_click, {
       year = format(time(rorig), "%Y") |> as.numeric()
     )
   
-  print(chart_adapt$df)
-  
-  
 })
 
 output$chart_adapt <- renderHighchart({
@@ -141,13 +138,27 @@ output$chart_adapt <- renderHighchart({
     hc_add_series(name = "LCZ 05", data = chart_adapt$df$LCZ_05, color = "#bd0026") |>
     hc_add_series(name = "LCZ 06", data = chart_adapt$df$LCZ_06, color = "#e31a1c") |>
     hc_add_series(name = " LCZ 12",data = chart_adapt$df$LCZ_12, color = "#fc4e2a") |>
-    hc_yAxis(title = list(text = "SUHI [°C]")) |>
-  hc_title(
-    text = paste("SUHI values extracted for each adaptation scenario at lon: ",chart_adapt$coordinates$lng, "lat: ", chart_adapt$coordinates$lat),
-    style = list(fontSize = "14px", color = "grey")) 
-  
+    hc_yAxis(title = list(text = "SUHI [°C]")) 
 })
 
+
+output$title_adapt1 <-
+  renderText({
+    paste("SUHI",input$timeday_adapt,"values extracted for each adaptation scenario at  lon:", round(chart_adapt$coordinates$lng, 5), "lat:", round(chart_adapt$coordinates$lat, 5))
+  })
+
+output$title_adapt2 <-
+  renderText({
+    
+   if(input$scenario %in% "orig") {
+     scen <- "original LCZ"
+   } else {
+     scen <- paste("modified LCZ", input$scenario)
+   }
+    
+    paste("SUHI",input$timeday_adapt, scen, "spatial distribution for year", input$year_adapt, "and seaseon", input$season_adapt)
+    
+  })
 
 output$table_adapt <-  DT::renderDT({
   
