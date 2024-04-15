@@ -111,7 +111,6 @@ observeEvent(input$map_adapt_click, {
   rorig <- rorig[[which( mkseas(time(rorig), "DJF") %in% input$season_adapt)]]
   rorig_ex <- terra::extract(rorig, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
   r05 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_05.nc"))
-  print(time(r05) )
   r05_ex <- terra::extract(r05, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
   r06 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_06.nc"))
   r06_ex <- terra::extract(r06, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
