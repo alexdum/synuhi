@@ -97,18 +97,21 @@ observeEvent(input$map_adapt_click, {
   ids <- input$map_adapt_click
   co <- data.frame(lng = ids$lng, lat = ids$lat)
   chart_adapt$coordinates <- co
-  print(chart_adapt$coordinates)
 })
 
 
-observe({
+#observeEvent(c(input$map_adapt_click,input$city_adapt,input$timeday_adapt),{
+  observe({
   
   rorig <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,".nc"))
   time(rorig[[3]]) <- as.Date("2017-01-15") 
+  rorig <- rorig[[which(as.numeric(format(time(rorig), "%Y")) > 2016)]]
+  
   # subsetare raster pentru harta
-  rorig <- rorig[[which(paste(format(time(rorig), "%Y"), mkseas(time(rorig), "DJF")) %in% paste(input$year_adapt, input$season_adapt))]]
+  rorig <- rorig[[which( mkseas(time(rorig), "DJF") %in% input$season_adapt)]]
   rorig_ex <- terra::extract(rorig, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
   r05 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_05.nc"))
+  print(time(r05) )
   r05_ex <- terra::extract(r05, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
   r06 <- rast(paste0("www/data/ncs/SENTINEL3B_SLSTR_L3C_0.01_SUHI_",input$timeday_adapt,"_06.nc"))
   r06_ex <- terra::extract(r06, cbind(chart_adapt$coordinates$lng, chart_adapt$coordinates$lat))
@@ -117,14 +120,33 @@ observe({
   
   chart_adapt$df <-
     data.frame(
-      Original = as.vector(unlist(rorig_ex)),
-      LCZ_05  =  as.vector(unlist(r05_ex)),
-      LCZ_06  =  as.vector(unlist(r06_ex)),
-      LCZ_12  =  as.vector(unlist(r12_ex))
+      Original = as.vector(unlist(rorig_ex)) |> round(1),
+      LCZ_05  =  as.vector(unlist(r05_ex)) |> round(1),
+      LCZ_06  =  as.vector(unlist(r06_ex)) |> round(1),
+      LCZ_12  =  as.vector(unlist(r12_ex)) |> round(1),
+      year = format(time(rorig), "%Y") |> as.numeric()
     )
   
-  print(summary(chart_adapt$df))
-
+  
+  
 })
+
+output$chart_adapt <- renderHighchart({
+  
+  
+  highchart() |>
+    hc_chart(type = "column") |>
+    hc_xAxis(opposite = TRUE, gridLineWidth = .3, categories =  chart_adapt$df$year) |>
+    hc_add_series(name = "Original",data =  chart_adapt$df$Original, color = "#800026") |>
+    hc_add_series(name = "LCZ 05", data = chart_adapt$df$LCZ_05, color = "#bd0026") |>
+    hc_add_series(name = "LCZ 06", data = chart_adapt$df$LCZ_06, color = "#e31a1c") |>
+    hc_add_series(name = " LCZ 12",data = chart_adapt$df$LCZ_12, color = "#fc4e2a") |>
+    hc_yAxis(title = list(text = "SUHI [°C]")) |>
+  hc_title(
+    text = paste("SUHI values extracted for each adaptation scenario at lon: ",chart_adapt$coordinates$lng, "lat: ", chart_adapt$coordinates$lat),
+    style = list(fontSize = "14px", color = "grey")) 
+  
+})
+
 
 
