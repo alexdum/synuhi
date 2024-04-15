@@ -31,7 +31,7 @@ ui_variability <-
           leafletOutput("map"), height = "550px"),
         card(
           full_screen = T,
-          highchartOutput("chart"), height = "550px")# %>% withSpinner(size = 0.5)
+          highchartOutput("chart"), height = "550px")
       )
     )
   )
