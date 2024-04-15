@@ -14,7 +14,7 @@ ui_adaptation <-
             "Adaptation scenario",
             tooltip(
               bsicons::bs_icon("question-circle"),
-              "SUHI adaptation scenario based on modified Local Climate Zones classes (LCZ)",
+              "SUHI adaptation scenario based on modified Local Climate Zones classes (LCZ). See Info subsection.",
               placement = "right"
             )
           ),
@@ -28,15 +28,26 @@ ui_adaptation <-
           value = 1, step = 0.1
         )
       ),
-      layout_columns(
-        fill = F,
-        card(
-          full_screen = T,
-          highchartOutput("chart_adapt"), height = "550px"),
-        card(
-          full_screen = T,
-          leafletOutput("map_adapt"), height = "550px")
-        
+      navset_card_tab(
+        nav_panel(
+          "Graphs",
+          icon =  bsicons::bs_icon("file-bar-graph"),
+          layout_columns(
+            fill = F,
+            card(
+              full_screen = T,
+              highchartOutput("chart_adapt"), height = "550px"),
+            card(
+              full_screen = T,
+              leafletOutput("map_adapt"), height = "550px")
+          )
+        ),
+        nav_panel(
+          "Info", 
+          icon =  bsicons::bs_icon("question-circle"),
+          p("TBA")
+          )
       )
+      
     )
   )
