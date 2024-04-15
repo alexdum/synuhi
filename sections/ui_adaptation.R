@@ -40,13 +40,20 @@ ui_adaptation <-
             card(
               full_screen = T,
               leafletOutput("map_adapt"), height = "550px")
+          ),
+          accordion(
+            open = F,
+            accordion_panel(
+              "Data", icon = bsicons::bs_icon("table",  class = "d-flex justify-content-between align-items-center"),
+              DT::dataTableOutput('table_adapt')
+            )
           )
         ),
         nav_panel(
           "Info", 
           icon =  bsicons::bs_icon("question-circle"),
           p("TBA")
-          )
+        )
       )
       
     )
