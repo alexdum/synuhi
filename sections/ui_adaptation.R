@@ -10,7 +10,14 @@ ui_adaptation <-
           c("Day" = "day", "Night" = "night")),
         radioButtons(
           "scenario",
-          "Adaptation scenario",
+          span(
+            "Adaptation scenario",
+            tooltip(
+              bsicons::bs_icon("question-circle"),
+              "SUHI adaptation scenario based on modified Local Climate Zones classes (LCZ)",
+              placement = "right"
+            )
+          ),
           choiceNames  = list("Original", "LCZ 05", "LCZ 06", "LCZ 12"),
           selected = "orig",
           choiceValues = list("orig", "05", "06", "12")
@@ -18,13 +25,18 @@ ui_adaptation <-
         sliderInput(
           "transp_adapt", "Transparency",
           min = 0, max = 1, ticks = F,
-          value = 0.8, step = 0.1
+          value = 1, step = 0.1
         )
       ),
       layout_columns(
+        fill = F,
         card(
           full_screen = T,
-          leafletOutput("map_adapt"), height = "550px"),
+          highchartOutput("chart_adapt"), height = "550px"),
+        card(
+          full_screen = T,
+          leafletOutput("map_adapt"), height = "550px")
+        
       )
     )
   )
