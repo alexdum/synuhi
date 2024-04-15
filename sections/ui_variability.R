@@ -14,7 +14,7 @@ ui_variability <-
           "timeday", "Time of day:", 
           c("Day" = "day", "Night" = "night")),
         sliderInput(
-          "transp", "Transparency",
+          "transp", "Raster opacity",
           min = 0, max = 1, ticks = F,
           value = 0.8, step = 0.1
         )

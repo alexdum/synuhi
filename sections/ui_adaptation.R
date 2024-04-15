@@ -23,7 +23,7 @@ ui_adaptation <-
           choiceValues = list("orig", "05", "06", "12")
         ),
         sliderInput(
-          "transp_adapt", "Transparency",
+          "transp_adapt", "Raster opacity",
           min = 0, max = 1, ticks = F,
           value = 1, step = 0.1
         )
