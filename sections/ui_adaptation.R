@@ -35,9 +35,11 @@ ui_adaptation <-
           layout_columns(
             fill = F,
             card(
+              card_header(textOutput("title_adapt1")),
               full_screen = T,
               highchartOutput("chart_adapt"), height = "550px"),
             card(
+              card_header(textOutput("title_adapt2")),
               full_screen = T,
               leafletOutput("map_adapt"), height = "550px")
           ),
