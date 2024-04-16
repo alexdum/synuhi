@@ -36,6 +36,11 @@ ui_variability <-
               full_screen = T,
               highchartOutput("chart"), height = "550px")
           )
+        ),
+        nav_panel(
+          "Info", 
+          icon =  bsicons::bs_icon("info-circle"),
+          htmlOutput("var_info")
         )
       )
     )

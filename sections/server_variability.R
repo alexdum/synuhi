@@ -145,10 +145,15 @@ output$chart <- renderHighchart({
   
 })
 
-output$title_var1<- renderText({
+output$title_var<- renderText({
   paste(toupper(input$param), toupper(input$timeday), input$season, input$year, names(names_cities[names_cities == input$city]))
 })
 
 output$title_var2<- renderText({
   paste(toupper(input$param),"values extracted at lon: ",round(chart_vars$coordinates$lng,5), "lat: ", round(chart_vars$coordinates$lat,5))
+})
+
+
+output$var_info <- renderUI({
+  tags$iframe(src = "html/variability_info.html", height = "100%", width = "100%")
 })
