@@ -1,13 +1,13 @@
 ---
 format:
-  html: 
+  html
 ---
 
 ## Adaptation scenario
 
 We address three scenarios of adaptation by modifying the information on Local Climate Zones (LCZ - https://lcz-generator.rub.de/global-lcz-map), in order to asses how this influences the spatial distribution of Surface Urban Heat Islands (SUHI).
 
-![Fig 1 Bucharest Local Climate Zones](../www/data/img/lcz_bucharest.png "Fig 1 Bucharest Local Climate Zones"){fig-align="center" width="500"}
+![Fig 1 Bucharest Local Climate Zones](../www/data/img/lcz_bucharest.png "Fig 1 Bucharest Local Climate Zones")
 
 Fig 1 Bucharest Local Climate Zones
 
@@ -19,6 +19,6 @@ Using the Weather Research & Forecasting Model (WRF), we modeled skin temperatur
 
 Subsequently, the Surface Urban Heat Islands were re-computed using adjusted Land Surface Temperature (LST) for the LCZ classes with values modeled with WRF. Hence, we can explore how changes in LCZ can help mitigate the areas affected by high temperatures in the summer. Hotspots were computed using Getis-Ord Gi algorithm (https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/hot-spot-analysis.htm)
 
-![Fig 2 Bucharest Hotspots as computed from LST data: July 2016 - 2022](../www/data/img/hotspot_bucharest.png){fig-align="center" width="550"}
+![Fig 2 Bucharest Hotspots as computed from LST data: July 2016 - 2022](../www/data/img/hotspot_bucharest.png)
 
 Fig 2 Bucharest Hotspots as computed from LST data: July 2016 - 2022
