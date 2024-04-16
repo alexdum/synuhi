@@ -21,17 +21,22 @@ ui_variability <-
       ),
       
       # Show results
-      card_header(
-        textOutput("title_map")
-      ),
-      layout_columns(
-        fill = F,
-        card(
-          full_screen = T,
-          leafletOutput("map"), height = "550px"),
-        card(
-          full_screen = T,
-          highchartOutput("chart"), height = "550px")
+      navset_card_tab(
+        nav_panel(
+          "Graphs",
+          icon =  bsicons::bs_icon("file-bar-graph"),
+          layout_columns(
+            fill = F,
+            card(
+              card_header(textOutput("title_var1")),
+              full_screen = T,
+              leafletOutput("map"), height = "550px"),
+            card(
+              card_header(textOutput("title_var2")),
+              full_screen = T,
+              highchartOutput("chart"), height = "550px")
+          )
+        )
       )
     )
   )

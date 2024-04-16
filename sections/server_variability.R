@@ -126,9 +126,9 @@ output$chart <- renderHighchart({
       hc_add_series(data = df, "column",
                     hcaes(x = ani, y = val, color = color),
                     showInLegend = F) |> 
-      hc_title(
-        text = paste(toupper(input$param),"values extracted at lon: ",round(chart_vars$coordinates$lng,5), "lat: ", round(chart_vars$coordinates$lat,5)),
-        style = list(fontSize = "14px", color = "grey")) |>
+      # hc_title(
+      #   text = paste(toupper(input$param),"values extracted at lon: ",round(chart_vars$coordinates$lng,5), "lat: ", round(chart_vars$coordinates$lat,5)),
+      #   style = list(fontSize = "14px", color = "grey")) |>
       hc_yAxis(
         max = lim_max, min = lim_min,
         title = list(text = paste(toupper(input$param), "[°C]"))
@@ -145,6 +145,10 @@ output$chart <- renderHighchart({
   
 })
 
-output$title_map <- renderText({
+output$title_var1<- renderText({
   paste(toupper(input$param), toupper(input$timeday), input$season, input$year, names(names_cities[names_cities == input$city]))
+})
+
+output$title_var2<- renderText({
+  paste(toupper(input$param),"values extracted at lon: ",round(chart_vars$coordinates$lng,5), "lat: ", round(chart_vars$coordinates$lat,5))
 })
