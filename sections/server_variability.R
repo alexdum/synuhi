@@ -145,7 +145,7 @@ output$chart <- renderHighchart({
   
 })
 
-output$title_var<- renderText({
+output$title_var1 <- renderText({
   paste(toupper(input$param), toupper(input$timeday), input$season, input$year, names(names_cities[names_cities == input$city]))
 })
 
