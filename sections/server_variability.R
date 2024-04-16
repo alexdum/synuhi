@@ -127,7 +127,7 @@ output$chart <- renderHighchart({
                     hcaes(x = ani, y = val, color = color),
                     showInLegend = F) |> 
       hc_title(
-        text = paste(toupper(input$param),"values extracted at lon: ",chart_vars$coordinates$lng, "lat: ", chart_vars$coordinates$lat),
+        text = paste(toupper(input$param),"values extracted at lon: ",round(chart_vars$coordinates$lng,5), "lat: ", round(chart_vars$coordinates$lat,5)),
         style = list(fontSize = "14px", color = "grey")) |>
       hc_yAxis(
         max = lim_max, min = lim_min,
