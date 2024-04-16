@@ -24,7 +24,7 @@ ui <-
     nav_panel(
       class = "bslib-page-dashboard",
       "Guide",
-      includeMarkdown("sections/guide.qmd")
+      htmlOutput("guide")
     )
   )
 

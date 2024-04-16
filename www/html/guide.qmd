@@ -1,5 +1,8 @@
 ---
-format: html
+format: 
+  html:
+    toc: true
+    code-fold: true
 ---
 
 ![](images/suhi_adaptation.png){fig-align="center"}
@@ -92,41 +95,41 @@ The main policy documents addressing adaptation to climate risks are compiled at
 
 Urban adaptation is a multi-sectoral process, thus multiple types of data are needed for a comprehensive approach.
 
-+---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Types of information**                                | **Information sources**                                                                                                                                            |
-+=========================================================+====================================================================================================================================================================+
-| Weather forecasts                                       | National Meteorological Administration (Meteo-RO) - [http://rcc.meteoromania.ro](http://rcc.meteoromania.ro/)                                                      |
-|                                                         |                                                                                                                                                                    |
-| Observed trends                                         | National Adaptation Platform (RO-ADAPT) - [https://roadapt.ro](https://roadapt.ro/)                                                                                |
-|                                                         |                                                                                                                                                                    |
-| Climate projections                                     | Copernicus and Climate Change Service - [https://climate.copernicus.eu](https://climate.copernicus.eu/)                                                            |
-+---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Environmental assessments and natural hazards           | National Agency for Environmental Protection - <https://atlas.anpm.ro/atlas>                                                                                       |
-+---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Current vulnerability and adaptive capacity assessments | Population, demographic and socio-economic data from Eurostat (<https://ec.europa.eu/eurostat>) and National Institute of Statistics (<https://insse.ro/cms/en>)   |
-|                                                         |                                                                                                                                                                    |
-|                                                         | Health records from National Institute for Public Health ([https://insp.gov.ro](https://insp.gov.ro/))                                                             |
-|                                                         |                                                                                                                                                                    |
-|                                                         | Maps of infrastructure, green space, public health facilities - General Urban Plan                                                                                 |
-+---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Socio-economic future projections                       | Population projections                                                                                                                                             |
-|                                                         |                                                                                                                                                                    |
-|                                                         | Scenarios of political developments, consumption patterns, infrastructure development, market transformation, etc.                                                 |
-|                                                         |                                                                                                                                                                    |
-|                                                         | National Institute of Statistics (<https://insse.ro/cms/en>)                                                                                                       |
-+---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Other relevant strategies, policies and plans           | Strategies for sustainable/economic development:                                                                                                                   |
-|                                                         |                                                                                                                                                                    |
-|                                                         | -National Strategy for the Sustainable Development of Romania 2030                                                                                                 |
-|                                                         |                                                                                                                                                                    |
-|                                                         | \- Integrated Urban Development Strategy of Bucharest 2021 – 2030  (<https://estibucuresti.pmb.ro/sidu)>                                                           |
-|                                                         |                                                                                                                                                                    |
-|                                                         | \- National Integrated Urban Development Strategy for Resilient, Green, Inclusive and Competitive Cities 2022-2035 - Romania's Urban Policy                        |
-+---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Types of information**                                | **Information sources**                                                                                                                                          |
++=========================================================+==================================================================================================================================================================+
+| Weather forecasts                                       | National Meteorological Administration (Meteo-RO) - [http://rcc.meteoromania.ro](http://rcc.meteoromania.ro/)                                                    |
+|                                                         |                                                                                                                                                                  |
+| Observed trends                                         | National Adaptation Platform (RO-ADAPT) - [https://roadapt.ro](https://roadapt.ro/)                                                                              |
+|                                                         |                                                                                                                                                                  |
+| Climate projections                                     | Copernicus and Climate Change Service - [https://climate.copernicus.eu](https://climate.copernicus.eu/)                                                          |
++---------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Environmental assessments and natural hazards           | National Agency for Environmental Protection - <https://atlas.anpm.ro/atlas>                                                                                     |
++---------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Current vulnerability and adaptive capacity assessments | Population, demographic and socio-economic data from Eurostat (<https://ec.europa.eu/eurostat>) and National Institute of Statistics (<https://insse.ro/cms/en>) |
+|                                                         |                                                                                                                                                                  |
+|                                                         | Health records from National Institute for Public Health ([https://insp.gov.ro](https://insp.gov.ro/))                                                           |
+|                                                         |                                                                                                                                                                  |
+|                                                         | Maps of infrastructure, green space, public health facilities - General Urban Plan                                                                               |
++---------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Socio-economic future projections                       | Population projections                                                                                                                                           |
+|                                                         |                                                                                                                                                                  |
+|                                                         | Scenarios of political developments, consumption patterns, infrastructure development, market transformation, etc.                                               |
+|                                                         |                                                                                                                                                                  |
+|                                                         | National Institute of Statistics (<https://insse.ro/cms/en>)                                                                                                     |
++---------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Other relevant strategies, policies and plans           | Strategies for sustainable/economic development:                                                                                                                 |
+|                                                         |                                                                                                                                                                  |
+|                                                         | -National Strategy for the Sustainable Development of Romania 2030                                                                                               |
+|                                                         |                                                                                                                                                                  |
+|                                                         | \- Integrated Urban Development Strategy of Bucharest 2021 – 2030  (<https://estibucuresti.pmb.ro/sidu)>                                                         |
+|                                                         |                                                                                                                                                                  |
+|                                                         | \- National Integrated Urban Development Strategy for Resilient, Green, Inclusive and Competitive Cities 2022-2035 - Romania's Urban Policy                      |
++---------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ### Assessing urban heat risks and vulnerabilities
 
-####  Recognizing past and present climate impacts
+#### Recognizing past and present climate impacts
 
 SynUHI conducted: 
 
@@ -152,47 +155,47 @@ The SynUHI tool provides a more detailed analysis at the level of the main citie
 
 -   European Climate Data Explorer, which provides interactive access to a growing selection of climate indices for key sectors at EU level for the 2100 time horizon. 
 
-####  Identifying vulnerable urban sectors
+#### Identifying vulnerable urban sectors
 
-+-----------------+--------------------------------------------------------------------------------------------------+
-| **Sector**      | **Impacts**                                                                                      |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Public Health   | \- Increased heat-related illnesses and deaths                                                   |
-|                 |                                                                                                  |
-|                 | \- Exacerbation of respiratory conditions due to poor air quality                                |
-|                 |                                                                                                  |
-|                 | \- Impact on mental health due to prolonged exposure to heat                                     |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Energy          | \- Higher demand for air conditioning leading to increased energy consumption                    |
-|                 |                                                                                                  |
-|                 | \- Strain on the power grid during peak cooling periods                                          |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Infrastructure  | \- Deterioration of roads and buildings due to higher temperatures                               |
-|                 |                                                                                                  |
-|                 | \- Increased maintenance costs for infrastructure repairs                                        |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Water Resources | \- Increased water consumption for irrigation and cooling purposes                               |
-|                 |                                                                                                  |
-|                 | \- Stress on water sources due to higher demand                                                  |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Biodiversity    | \- Disruption of ecosystems and habitats                                                         |
-|                 |                                                                                                  |
-|                 | \- Changes in plant and animal species distribution                                              |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Industry        | \- Reduced productivity in outdoor industries during heatwaves                                   |
-|                 |                                                                                                  |
-|                 | \- Increased healthcare costs due to heat-related illnesses                                      |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Buildings       | \- Accelerated degradation of building materials due to prolonged exposure to high temperatures  |
-|                 |                                                                                                  |
-|                 | \- Increased wear and tear on roofs, walls, and other surfaces.                                  |
-|                 |                                                                                                  |
-|                 | \- Repairing heat-related damage to roofs, walls, and other building components.                 |
-+-----------------+--------------------------------------------------------------------------------------------------+
-| Social Equity   | \- Vulnerable populations disproportionately affected by heat stress                             |
-|                 |                                                                                                  |
-|                 | \- Disparities in access to cooling resources and green spaces                                   |
-+-----------------+--------------------------------------------------------------------------------------------------+
++-----------------+-------------------------------------------------------------------------------------------------+
+| **Sector**      | **Impacts**                                                                                     |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Public Health   | \- Increased heat-related illnesses and deaths                                                  |
+|                 |                                                                                                 |
+|                 | \- Exacerbation of respiratory conditions due to poor air quality                               |
+|                 |                                                                                                 |
+|                 | \- Impact on mental health due to prolonged exposure to heat                                    |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Energy          | \- Higher demand for air conditioning leading to increased energy consumption                   |
+|                 |                                                                                                 |
+|                 | \- Strain on the power grid during peak cooling periods                                         |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Infrastructure  | \- Deterioration of roads and buildings due to higher temperatures                              |
+|                 |                                                                                                 |
+|                 | \- Increased maintenance costs for infrastructure repairs                                       |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Water Resources | \- Increased water consumption for irrigation and cooling purposes                              |
+|                 |                                                                                                 |
+|                 | \- Stress on water sources due to higher demand                                                 |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Biodiversity    | \- Disruption of ecosystems and habitats                                                        |
+|                 |                                                                                                 |
+|                 | \- Changes in plant and animal species distribution                                             |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Industry        | \- Reduced productivity in outdoor industries during heatwaves                                  |
+|                 |                                                                                                 |
+|                 | \- Increased healthcare costs due to heat-related illnesses                                     |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Buildings       | \- Accelerated degradation of building materials due to prolonged exposure to high temperatures |
+|                 |                                                                                                 |
+|                 | \- Increased wear and tear on roofs, walls, and other surfaces.                                 |
+|                 |                                                                                                 |
+|                 | \- Repairing heat-related damage to roofs, walls, and other building components.                |
++-----------------+-------------------------------------------------------------------------------------------------+
+| Social Equity   | \- Vulnerable populations disproportionately affected by heat stress                            |
+|                 |                                                                                                 |
+|                 | \- Disparities in access to cooling resources and green spaces                                  |
++-----------------+-------------------------------------------------------------------------------------------------+
 
 #### Conducting risk and vulnerability assessments
 
@@ -226,37 +229,37 @@ Adaptation objectives should address: 
 
 ### Identifying adaptation options
 
-+-------------------------------+------------------------------------------------------------------------+
-| Type of adaptation measures   | Adaptation measures                                                    |
-+-------------------------------+------------------------------------------------------------------------+
-| Urban Planning                | -   Cool pavements                                                     |
-|                               |                                                                        |
-|                               | -   Urban ventilation corridors                                        |
-|                               |                                                                        |
-|                               | -   Shade structures                                                   |
-|                               |                                                                        |
-|                               | -   Integration of water features (fontains, ponds, water bodies)      |
-|                               |                                                                        |
-|                               | -   Rainwater management structures                                    |
-+-------------------------------+------------------------------------------------------------------------+
-| Buildings                     | -   Cool roofs                                                         |
-|                               |                                                                        |
-|                               | -   Reflective materials for roofs and facades                         |
-|                               |                                                                        |
-|                               | -   Natural ventilation systems                                        |
-|                               |                                                                        |
-|                               | -   Facade shading structures                                          |
-+-------------------------------+------------------------------------------------------------------------+
-| Vegetation and Urban Greening | -   Green roofs and facades                                            |
-|                               |                                                                        |
-|                               | -   Planting trees along the streets                                   |
-|                               |                                                                        |
-|                               | -   Designing and preserving green spaces and parks and urban gardens  |
-|                               |                                                                        |
-|                               | -   Development of urban agriculture                                   |
-|                               |                                                                        |
-|                               | -   Greening tramway tracks and green corridors                        |
-+-------------------------------+------------------------------------------------------------------------+
++-------------------------------+-----------------------------------------------------------------------+
+| Type of adaptation measures   | Adaptation measures                                                   |
++-------------------------------+-----------------------------------------------------------------------+
+| Urban Planning                | -   Cool pavements                                                    |
+|                               |                                                                       |
+|                               | -   Urban ventilation corridors                                       |
+|                               |                                                                       |
+|                               | -   Shade structures                                                  |
+|                               |                                                                       |
+|                               | -   Integration of water features (fontains, ponds, water bodies)     |
+|                               |                                                                       |
+|                               | -   Rainwater management structures                                   |
++-------------------------------+-----------------------------------------------------------------------+
+| Buildings                     | -   Cool roofs                                                        |
+|                               |                                                                       |
+|                               | -   Reflective materials for roofs and facades                        |
+|                               |                                                                       |
+|                               | -   Natural ventilation systems                                       |
+|                               |                                                                       |
+|                               | -   Facade shading structures                                         |
++-------------------------------+-----------------------------------------------------------------------+
+| Vegetation and Urban Greening | -   Green roofs and facades                                           |
+|                               |                                                                       |
+|                               | -   Planting trees along the streets                                  |
+|                               |                                                                       |
+|                               | -   Designing and preserving green spaces and parks and urban gardens |
+|                               |                                                                       |
+|                               | -   Development of urban agriculture                                  |
+|                               |                                                                       |
+|                               | -   Greening tramway tracks and green corridors                       |
++-------------------------------+-----------------------------------------------------------------------+
 
 ### Assessing and selecting adaptation options
 
