@@ -4,7 +4,7 @@ ui_adaptation <-
       sidebar = sidebar(
         selectInput("city_adapt", "City:", names_cities[10], selected = names_cities[10]),
         selectInput("season_adapt", "Season:", seasons[1], selected = seasons[1]),
-        sliderInput("year_adapt", "Year:", min = 2017, max = 2022, value = 2017),
+        sliderInput("year_adapt", "Year:", min = 2017, max = 2022, value = 2017, sep = ""),
         selectInput(
           "timeday_adapt", "Time of day:", 
           c("Day" = "day", "Night" = "night")),
