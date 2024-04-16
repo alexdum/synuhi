@@ -18,7 +18,7 @@ ui_adaptation <-
               placement = "right"
             )
           ),
-          choiceNames  = list("Original", "LCZ 05", "LCZ 06", "LCZ 12"),
+          choiceNames  = list("Unmodified LCZ", "LCZ 02 to LCZ 05", "LCZ 02 to LCZ 06", "LCZ 02 to LCZ 12"),
           selected = "orig",
           choiceValues = list("orig", "05", "06", "12")
         ),
@@ -54,7 +54,7 @@ ui_adaptation <-
         nav_panel(
           "Info", 
           icon =  bsicons::bs_icon("info-circle"),
-          p("TBA")
+          includeMarkdown("sections/adaptation_info.qmd")
         )
       )
       
