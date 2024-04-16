@@ -151,13 +151,12 @@ output$title_adapt2 <-
   renderText({
     
    if(input$scenario %in% "orig") {
-     scen <- "original LCZ"
+     scen <- "unmodified LCZ"
    } else {
-     scen <- paste("modified LCZ", input$scenario)
+     scen <- paste("modified LCZ 02 to LCZ", input$scenario)
    }
     
-    paste("SUHI",input$timeday_adapt, scen, "spatial distribution for year", input$year_adapt, "and seaseon", input$season_adapt)
-    
+    paste0(tools::toTitleCase(input$timeday_adapt), "time SUHI using ", scen," (", input$year_adapt,")")
   })
 
 output$table_adapt <-  DT::renderDT({
