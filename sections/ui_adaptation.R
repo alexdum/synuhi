@@ -54,7 +54,7 @@ ui_adaptation <-
         nav_panel(
           "Info", 
           icon =  bsicons::bs_icon("info-circle"),
-          includeMarkdown("sections/adaptation_info.qmd")
+          htmlOutput("adapt_info")
         )
       )
       

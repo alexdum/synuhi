@@ -174,5 +174,9 @@ output$table_adapt <-  DT::renderDT({
   
 })
 
+output$adapt_info <- renderUI({
+  tags$iframe(src = "html/adaptation_info.html", height = "100%", width = "100%")
+})
+
 
 
