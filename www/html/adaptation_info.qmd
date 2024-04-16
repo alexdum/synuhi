@@ -9,11 +9,11 @@ We address three scenarios of adaptation by modifying the information on Local C
 
 ![Fig 1 Bucharest Local Climate Zones](images/lcz_bucharest.png "Fig 1 Bucharest Local Climate Zones")
 
-Using the Weather Research & Forecasting Model (WRF), we modeled skin temperature using both the original LCZ and modified LCZ to assess how it varies across these scenarios:
+Using the Weather Research & Forecasting Model (WRF), we modeled skin temperature using both the original LCZ and modified LCZ to assess how it varies across these scenarios. In areas where hotspots of SUHI were identified, the LCZ climate zones were modified from 2 Compact midrise to:
 
--   In areas where hotspots of SUHI were identified, the LCZ climate zones were modified from 2. Compact midrise to 5. Open midrise;
--   In areas where hotspots of SUHI were identified, the LCZ climate zones were modified from 2. Compact midrise to 6. Open lowrise;
--   In areas where hotspots of SUHI were identified, the LCZ climate zones were modified from 2. Compact midrise to 12. Open lowrise.
+-   5\. Open midrise;
+-   6\. Open lowrise;
+-    12. Open lowrise.
 
 Subsequently, the Surface Urban Heat Islands were re-computed using adjusted Land Surface Temperature (LST) for the LCZ classes with values modeled with WRF. Hence, we can explore how changes in LCZ can help mitigate the areas affected by high temperatures in the summer. Hotspots were computed using Getis-Ord Gi algorithm (https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/hot-spot-analysis.htm)
 
